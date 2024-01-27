@@ -1,0 +1,32 @@
+***Création de projet web (dans powershell):            symfony new --full nom_projet
+
+***Info:
+connaitre les modules installés:                    php -m
+
+***Gestion de projet
+Lancement :                                   symfony serve -d
+arret:                                        symfony server:stop
+
+***BDD:
+Création BDD :                      symfony console doctrine:database:create
+créer table(utilisateur):           symfony console make:user           -> création entity et repository
+créer table:
+modif entity :                         symfony console make:entity -> table en questions (sans la table -> entity)
+appliquer modif :                   symfony console make:migration (crée fichier migrations)
+executer modif :                    symfony console doctrine:migrations:migrate
+
+
+
+
+
+
+
+
+____________________VARIABLE D'ENVIRONNEMENT____________
+Gestion fichier .env      
+.env -> fichier source
+.en.local -> copie avec mes paramétres
+
+!!!  Pour passage en prod -> variable APP_ENV=dev  doit devenir   APP_ENV=prod
+
+!!!  Configurer le mailer l.39 avec phpmailer (ou voir video sur  MailHog -> Nouvelle Techno)
