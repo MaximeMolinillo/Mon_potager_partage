@@ -16,6 +16,10 @@ appliquer modif :                   symfony console make:migration (crée fichie
 executer modif :                    symfony console doctrine:migrations:migrate
 
 
+***ASSET BOOTSTRAP etc...
+Création controller et fichier index.html.twig  mainController= nom du controller      symfony console make:controller MainController
+
+
 
 
 
