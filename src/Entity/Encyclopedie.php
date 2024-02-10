@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Trait\PhotoTrait;
+use App\Entity\Trait\SlugTrait;
 use App\Entity\Trait\StatutTrait;
 use App\Entity\Trait\TitreTrait;
 use App\Entity\Trait\TypeTrait;
@@ -19,6 +20,7 @@ class Encyclopedie
     use PhotoTrait;
     use StatutTrait;
     use TypeTrait;
+    use SlugTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
