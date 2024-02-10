@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\PhotoTrait;
+use App\Entity\Trait\StatutTrait;
+use App\Entity\Trait\TitreTrait;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,6 +14,10 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
+    use TitreTrait;
+    use PhotoTrait;
+    use StatutTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -19,17 +26,8 @@ class Article
     #[ORM\Column]
     private ?int $num_article = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $titre = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $photo = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $texte = null;
-
-    #[ORM\Column]
-    private ?bool $statut = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $frise_chronologique = null;
@@ -62,30 +60,6 @@ class Article
         return $this;
     }
 
-    public function getTitre(): ?string
-    {
-        return $this->titre;
-    }
-
-    public function setTitre(string $titre): static
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): static
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
     public function getTexte(): ?string
     {
         return $this->texte;
@@ -94,18 +68,6 @@ class Article
     public function setTexte(?string $texte): static
     {
         $this->texte = $texte;
-
-        return $this;
-    }
-
-    public function isStatut(): ?bool
-    {
-        return $this->statut;
-    }
-
-    public function setStatut(bool $statut): static
-    {
-        $this->statut = $statut;
 
         return $this;
     }

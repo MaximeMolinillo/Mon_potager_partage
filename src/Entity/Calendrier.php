@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\StatutTrait;
+use App\Entity\Trait\TypeTrait;
 use App\Repository\CalendrierRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: CalendrierRepository::class)]
 class Calendrier
 {
+    use StatutTrait;
+    use TypeTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -23,14 +28,8 @@ class Calendrier
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $fin = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $type = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
-
-    #[ORM\Column]
-    private ?bool $statut = null;
 
     #[ORM\ManyToOne(inversedBy: 'calendriers')]
     private ?Utilisateur $auteur = null;
@@ -76,18 +75,6 @@ class Calendrier
         return $this;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(?string $type): static
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -96,18 +83,6 @@ class Calendrier
     public function setDescription(?string $description): static
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function isStatut(): ?bool
-    {
-        return $this->statut;
-    }
-
-    public function setStatut(bool $statut): static
-    {
-        $this->statut = $statut;
 
         return $this;
     }

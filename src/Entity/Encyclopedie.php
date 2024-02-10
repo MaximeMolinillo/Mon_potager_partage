@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\PhotoTrait;
+use App\Entity\Trait\StatutTrait;
+use App\Entity\Trait\TitreTrait;
+use App\Entity\Trait\TypeTrait;
 use App\Repository\EncyclopedieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,6 +15,11 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: EncyclopedieRepository::class)]
 class Encyclopedie
 {
+    use TitreTrait;
+    use PhotoTrait;
+    use StatutTrait;
+    use TypeTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -18,12 +27,6 @@ class Encyclopedie
 
     #[ORM\Column]
     private ?int $id_encyclopedie = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $titre = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $type = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $mois_semis = null;
@@ -36,9 +39,6 @@ class Encyclopedie
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $climat = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $photo = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nourriture = null;
@@ -57,9 +57,6 @@ class Encyclopedie
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $secteur_geo = null;
-
-    #[ORM\Column]
-    private ?bool $statut = null;
 
     #[ORM\ManyToOne(inversedBy: 'encyclopedies')]
     private ?Utilisateur $auteur = null;
@@ -89,29 +86,7 @@ class Encyclopedie
         return $this;
     }
 
-    public function getTitre(): ?string
-    {
-        return $this->titre;
-    }
 
-    public function setTitre(string $titre): static
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(?string $type): static
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 
     public function getMoisSemis(): ?int
     {
@@ -157,18 +132,6 @@ class Encyclopedie
     public function setClimat(?string $climat): static
     {
         $this->climat = $climat;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): static
-    {
-        $this->photo = $photo;
 
         return $this;
     }
@@ -241,18 +204,6 @@ class Encyclopedie
     public function setSecteurGeo(?string $secteur_geo): static
     {
         $this->secteur_geo = $secteur_geo;
-
-        return $this;
-    }
-
-    public function isStatut(): ?bool
-    {
-        return $this->statut;
-    }
-
-    public function setStatut(bool $statut): static
-    {
-        $this->statut = $statut;
 
         return $this;
     }
