@@ -35,6 +35,7 @@ class Article
     private ?int $frise_chronologique = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Utilisateur $auteur = null;
 
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: AvisArticle::class)]

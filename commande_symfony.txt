@@ -19,6 +19,12 @@ executer modif :                    symfony console doctrine:migrations:migrate
 ***ASSET BOOTSTRAP etc...
 Création controller et fichier index.html.twig  mainController= nom du controller      symfony console make:controller MainController
 
+***DATA FIXTURES
+injecte et enléve de la data pour nos test en dev
+instalation:                        composer require --dev orm-fixtures
+création Page fixtures :               symfony console make:fixtures   
+Envoyer fixtures vers BDD:           symfony console doctrine:fixtures:load (--no-interaction)
+
 
 
 

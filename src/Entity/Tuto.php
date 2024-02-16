@@ -24,8 +24,12 @@ class Tuto
     #[ORM\Column]
     private ?int $num_tuto = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $frise_chrono = null;
+    
+    #[ORM\Column]
+    private ?int $frise_chrono = null;
+
+    // #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    // private ?\DateTimeInterface $frise_chrono = null;
 
     #[ORM\OneToMany(mappedBy: 'tuto', targetEntity: ArticleTuto::class)]
     private Collection $articleTutos;
@@ -52,12 +56,12 @@ class Tuto
         return $this;
     }
 
-    public function getFriseChrono(): ?\DateTimeInterface
+    public function getFriseChrono(): ?int
     {
         return $this->frise_chrono;
     }
 
-    public function setFriseChrono(?\DateTimeInterface $frise_chrono): static
+    public function setFriseChrono(int $frise_chrono): static
     {
         $this->frise_chrono = $frise_chrono;
 
