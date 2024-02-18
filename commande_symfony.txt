@@ -14,6 +14,7 @@ créer table:
 modif entity :                         symfony console make:entity -> table en questions (sans la table -> entity)
 appliquer modif :                   symfony console make:migration (crée fichier migrations)
 executer modif :                    symfony console doctrine:migrations:migrate
+Recréer BDD si suppresion :           symfony console doctrine:schema:update --force
 
 
 ***ASSET BOOTSTRAP etc...
@@ -24,6 +25,10 @@ injecte et enléve de la data pour nos test en dev
 instalation:                        composer require --dev orm-fixtures
 création Page fixtures :               symfony console make:fixtures   
 Envoyer fixtures vers BDD:           symfony console doctrine:fixtures:load (--no-interaction)
+
+
+***CONTROLLER  
+Création d'un contrller :                symfony console make:controller NomController
 
 
 
